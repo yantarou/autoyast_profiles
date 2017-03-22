@@ -1,12 +1,17 @@
-VM_NAME="sles12sp1_minimum"
-OS_TYPE="Linux"
+INSTALL_IMG="SLE-12-SP1-Server-DVD-x86_64-GM-DVD1.iso"
 OS_VARIANT="sles12sp1"
+BASE_NAME="sles12sp1_minimum"
+
+NOW=$(date '+%Y-%m-%d_%H-%M-%S')
+VM_NAME="${BASE_NAME}_${NOW}"
+
+OS_TYPE="Linux"
 RAM="1024"
 VCPUS="1"
+
 DISK_IMG="${VM_NAME}_disk.qcow2"
 DISK_SIZE="5G"
-CDROM_IMG="SLE-12-SP1-Server-DVD-x86_64-GM-DVD1.iso"
-EXTRA_ARGS="netdevice=eth0 netsetup=dhcp autoyast=file:///${VM_NAME}.xml"
+EXTRA_ARGS="netdevice=eth0 netsetup=dhcp autoyast=file:///${BASE_NAME}.xml"
 
 qemu-img create -f qcow2 ${DISK_IMG} ${DISK_SIZE}
 
@@ -21,6 +26,6 @@ virt-install \
     --vcpus=${VCPUS} \
     --disk path=${DISK_IMG},device=disk \
     --graphics vnc,listen=0.0.0.0 \
-    --location ${CDROM_IMG} \
-    --initrd-inject "${VM_NAME}.xml" \
+    --location ${INSTALL_IMG} \
+    --initrd-inject "${BASE_NAME}.xml" \
     --extra-args "${EXTRA_ARGS}"
