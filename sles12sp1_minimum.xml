@@ -103,6 +103,8 @@
         <do_online_update config:type="boolean">false</do_online_update>
         <install_recommended config:type="boolean">false</install_recommended>
         <packages config:type="list">
+            <package>bash-completion</package>
+            <package>openssh</package>
             <package>vim</package>
         </packages>
     </software>
