@@ -104,6 +104,7 @@
         <install_recommended config:type="boolean">false</install_recommended>
         <packages config:type="list">
             <package>bash-completion</package>
+            <package>iputils</package>
             <package>openssh</package>
             <package>vim</package>
         </packages>
